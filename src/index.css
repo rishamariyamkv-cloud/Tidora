@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --page: 245 247 250;
+    --card: 255 255 255;
+    --ink: 38 50 56;
+    --muted: 98 115 130;
+    --line: 226 232 240;
+    --soft: 234 242 248;
+    color-scheme: light;
+  }
+
+  .dark {
+    --page: 13 25 38;
+    --card: 21 36 52;
+    --ink: 226 234 241;
+    --muted: 145 163 180;
+    --line: 39 58 78;
+    --soft: 28 48 68;
+    color-scheme: dark;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    @apply bg-page text-ink font-sans antialiased;
+  }
+
+  input,
+  select,
+  textarea {
+    @apply text-ink;
+  }
+}
+
+@layer components {
+  .card {
+    @apply min-w-0 bg-card rounded-2xl border border-line/70 shadow-card;
+  }
+  .input {
+    @apply w-full rounded-xl border border-line bg-card px-3 py-2 text-sm outline-none transition
+      placeholder:text-muted/70 focus:border-teal focus:ring-2 focus:ring-teal/20;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-teal/40 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-teal text-white hover:bg-teal-dark;
+  }
+  .btn-navy {
+    @apply btn bg-navy text-white hover:bg-navy-light dark:bg-soft dark:hover:bg-line;
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-card text-ink hover:bg-soft;
+  }
+  .btn-danger {
+    @apply btn bg-danger text-white hover:brightness-95;
+  }
+  .icon-btn {
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-xl text-muted transition hover:bg-soft hover:text-ink
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-teal/40;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--line));
+  border-radius: 8px;
+}
+
+@media print {
+  aside,
+  header,
+  .no-print {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  body {
+    background: white !important;
+  }
+  .card {
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+}
